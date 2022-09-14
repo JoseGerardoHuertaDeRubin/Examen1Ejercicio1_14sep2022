@@ -1,0 +1,41 @@
+import numpy as np
+import math
+import sympy
+
+m = int(input("Ingrese la dimensión de la matriz (igual o mayor a 3): "))
+#print(m)
+
+#Insertar números primos
+
+MatPrm = []
+NumPrm = list(sympy.primerange(0,(m*m*m*m*m)))
+for i in range(m):
+    F = []
+    for j in range(m):
+        F.append(NumPrm[(i*m)+j])
+    MatPrm.append(F)
+#print(MatPrm) #Genera una lista de listas con los primos
+
+#Creación del espacio (matriz) con los números primos
+esp = ""
+for i in range(0,m):
+    for j in range(0,m):
+        if len(str(MatPrm[i][j])) == 1: #para que el espacio sea según número de dígitos
+            esp = esp + str(MatPrm[i][j]) + "     "
+        elif len(str(MatPrm[i][j])) == 2:
+            esp = esp + str(MatPrm[i][j]) + "    "
+        elif len(str(MatPrm[i][j])) == 3:
+            esp = esp + str(MatPrm[i][j]) + "   "
+        else:
+            esp = esp + str(MatPrm[i][j]) + "  "
+    esp = esp + "\n"
+print("La matriz de números primos es:")
+print(esp)
+
+#Suma de los elementos de la diagonal y arriba
+suma = 0
+for i in range (0,m):
+    for j in range (0,m):
+        if i <= j:
+            suma = suma + MatPrm[i][j]
+print("La suma de los elementos en y por encima de la diagonal principal es:", suma)
